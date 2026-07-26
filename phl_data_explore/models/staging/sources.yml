@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_phl
+    description: Raw L&I violations data (untransformed)
+    tables:
+      - name: violations
+        description: One row per code violation issued by Philadelphia L&I, 2025-forward.
