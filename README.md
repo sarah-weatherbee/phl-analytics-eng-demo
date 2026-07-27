@@ -29,6 +29,9 @@ This project looks at violation *activity* only: volume, timing, location (zip),
 Violation-level and case-level status have been deliberately excluded at this time.
 rather than guessed at.
 
+Data quality notes:
+ZIP missing on 1,096 rows (0.7%), council district on 978 (0.65%). Labeled "Unknown" where null on these fields.
+
 ## Setup
 
 _(to be completed)_
