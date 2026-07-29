@@ -20,7 +20,10 @@ under the Building Construction and Occupancy Code. Public data via
 [OpenDataPhilly](https://opendataphilly.org/datasets/licenses-and-inspections-code-violations/),
 served through the Carto SQL API. Updated daily; maintained by the L&I GIS team.
 
-**Scope:** violations issued 2025-forward (~150k rows).
+- Field dictionary (used for column descriptions in dbt models): [metadata.phila.gov L&I Violations]
+- API endpoint: https://phl.carto.com/api/v2/sql
+
+**Scope:** violations issued 2025-forward.
 
 
 ## Approach
@@ -29,7 +32,7 @@ This project looks at violation *activity* only: volume, timing, location (zip),
 Violation-level and case-level status have been deliberately excluded at this time.
 
 Data quality notes:
-ZIP missing on 1,096 rows (0.7%), council district on 978 (0.65%). Labeled "Unknown" where null on these fields.
+As of initial data query (July 25, 2026), zipcode and councildistrict were missing values on <1% of records. Those have been labeled 'Unknown'.
 
 ## Setup
 
