@@ -14,8 +14,8 @@ cleaned as (
       -- Source stores violationdate as a timestamp string; parse to timestamp, then take the date
       date(timestamp(violationdate)) as violation_date,
       date_trunc(date(timestamp(violationdate)), month) as violation_month,
-      violationcodetitle as violation_type,
       violationcode as violation_code,
+      coalesce(violationcodetitle, 'Unknown') as violation_type,
       coalesce(council_district, 'Unknown') as council_district,
       coalesce(left(zip, 5), 'Unknown') as zip_code,
       casetype as case_type,
