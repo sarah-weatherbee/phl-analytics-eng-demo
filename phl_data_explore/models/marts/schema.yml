@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: fct_violations
+    description: >
+      One row per individual L&I code violation issued in Philadelphia,
+      2025-forward. Grain: violation_id.
+      Source: Philadelphia Dept. of Licenses & Inspections
+      Property Code Violations dataset and metadata via OpenDataPhilly.
+    columns:
+      - name: violation_id
+        description: >
+          Unique identifier for each individual violation written
+          (source: violationnumber). The grain of this table.
+        tests:
+          - unique
+          - not_null
+
+      - name: violation_date
+        description: >
+          Date of the violation, per L&I (cast from source timestamp).
+        tests:
+          - not_null
+
+      - name: violation_month
+        description: >
+          First day of the month of violation_date, for monthly aggregation.
+
+      - name: violation_type
+        description: >
+          Title of the violation code (source: violationcodetitle),
+          e.g. "EXTERIOR AREA WEEDS". The human-readable violation category.
+        tests:
+          - not_null
+
+      - name: violation_code
+        description: >
+          Categorical code of the violation (source: violationcode).
+
+      - name: council_district
+        description: >
+          Philadelphia City Council district (1-10) of the address.
+          Missing values are labeled "Unknown".
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['1','2','3','4','5','6','7','8','9','10','Unknown']
+
+      - name: zip_code
+        description: >
+          5-digit ZIP, trimmed from the source ZIP+4.
+          Missing values are labeled "Unknown".
+        tests:
+          - not_null
+
+      - name: case_type
+        description: >
+          Type of the parent L&I case.
+
+      - name: case_priority
+        description: >
+          Priority/severity designation of the parent L&I case, from
+          STANDARD through escalating severity levels such as UNSAFE
+          and IMMINENTLY DANGEROUS.
